@@ -1,22 +1,26 @@
-package pesquisalinear;
+package pesquisabinaria;
 
+import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author paulinho
  */
-public class PesquisaLinear {
+public class PesquisaBinaria {
 
+    
     public static void main(String[] args) {
         
         int[]vetor = {10,20,30,40,50,60,70,80,90};
+       
         
         int chave = Integer.parseInt(
                 JOptionPane.showInputDialog(
                         "Informe o número a ser pesquisado"));
         
-        int posicao = pesquisaLinear(chave, vetor);
+        int posicao = pesquisaBinaria(chave, vetor);
         
         if(posicao >= 0){
             System.out.println("O Elemento "+chave+" está localizado na "
@@ -25,6 +29,7 @@ public class PesquisaLinear {
             System.out.println(
                     "O Elemento "+chave+" não foi localizado na lista");
         }
+        
     }
     
     /***
@@ -35,13 +40,24 @@ public class PesquisaLinear {
      * -1 se não encontrar
      * 
      */
-    public static int pesquisaLinear(int chave, int[]vet){
+    public static int pesquisaBinaria(int chave, int[]vet){
+        int esquerda, meio, direita;
+        esquerda = 0;
+        direita = vet.length -1;
         
-        for (int i = 0; i < vet.length; i++) {
-            if(chave == vet[i])
-                return i;    
+        while(esquerda <= direita){
+            meio = (esquerda + direita) / 2;
+            if(chave == vet[meio]){
+                return meio;
+            }
+            if(chave > vet[meio]){
+                esquerda = meio +1;
+            }else{
+                direita = meio -1;
+            }
+            
         }
         return -1;
     }
-
+    
 }
