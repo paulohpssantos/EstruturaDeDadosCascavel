@@ -1,5 +1,6 @@
 package ordenacaoselecao;
 
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +12,20 @@ public class OrdenacaoSelecao {
     
     public static void main(String[] args) {
         
-        int[]vetor = {45,20,33,40,50,2,15,88,8};
+        
+        
+        //int[]vetor = {45,20,33,40,50,2,15,88,8};
+        
+        //Gera um vetor com números aleatórios
+        Random gerador = new Random();
+        int[] vetor = new int[100000];
+        for (int i = 0; i < vetor.length; i++) {
+            vetor[i] = gerador.nextInt();
+            
+        }
+        
+        long inicio = System.currentTimeMillis();
+        
         
         for(int i = 0; i < vetor.length-1; i++){
             int posicaoMenor = i;
@@ -29,9 +43,15 @@ public class OrdenacaoSelecao {
             }
         }
         
+        long fim = System.currentTimeMillis();
+        long tempoExecucao = fim - inicio;
+        
         for(int i = 0; i < vetor.length; i++){
             System.out.println("posicao ["+i+"] = "+vetor[i]);
         }
+        System.out.println("Tempo de execução: "+tempoExecucao);
+        
+        
      
     }
     
